@@ -9,8 +9,9 @@ public class Main {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
 //declare logo from resource folder
-        ImageIcon logo = new ImageIcon(".//res//log.png");
-        window.setTitle("JUST A PROGRAM");
+        ImageIcon logo = new ImageIcon(".//res//logo.png");
+        //game title
+        window.setTitle("NETGRID");
 
         GamePanel gamePanel = new GamePanel();
         window.add(gamePanel);
