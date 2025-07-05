@@ -12,8 +12,8 @@ public class GamePanel extends JPanel implements Runnable {
     Thread gameThread;
 
     public int tileSize = originalTilesSize * scale;//48x48px
-    public int maxScreenColumn = 16;
-    public int maxScreenRow = 15;
+    public int maxScreenColumn = 30;
+    public int maxScreenRow = 20;
     //map has to be 31px in column X 17px in row game in 1488x1080 change if want as got some problem #fixed 13/4/2025
     public int screenWidth = tileSize * maxScreenColumn;
     public int screenHeight = tileSize * maxScreenRow;
