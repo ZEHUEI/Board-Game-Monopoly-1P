@@ -28,6 +28,7 @@ public class TileManager {
 
     public void getTileImage(){
         setup(0,"Floor",false);
+        setup(1,"stone",false);
     }
     public void setup(int index, String imageName, boolean collision){
         UtilityTool uTool = new UtilityTool();

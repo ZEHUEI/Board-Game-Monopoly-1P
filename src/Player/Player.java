@@ -11,9 +11,16 @@ public class Player extends Entity {
     GamePanel gp;
     Keybinds keyH;
 
+    String[] path = {"left", "up", "right", "down"};
+    int[] stepsPerDir = {21, 17, 22, 17};
+
+    int pathIndex = 0;
+    int stepsTaken = 0;
+    int diceStepsLeft = 0;
+
+
     public Player(GamePanel gp, Keybinds keyH) {
         this.gp = gp;
-
         this.keyH = keyH;
 
 //        solidarea = new Rectangle();
@@ -54,27 +61,36 @@ public class Player extends Entity {
         GU2 = setup("/Player/GU2", gp.tileSize, gp.tileSize);
 
     }
-
-    public void update() {
-//        if(keyH.up == true|| keyH.down == true|| keyH.left == true ||
-//                keyH.right == true || keyH.enter == true){
-        if (keyH.up == true) {
-            direction = "up";
-            y -= speed;
-        } else if (keyH.down == true) {
-            direction = "down";
-            y += speed;
-        } else if (keyH.left == true) {
-            direction = "left";
-            x -= speed;
-        } else if (keyH.right == true) {
-            direction = "right";
-            x += speed;
-        }
-
+    public void startMove(int steps) {
+        this.diceStepsLeft = steps;
     }
 
+public void update() {
+    if (diceStepsLeft > 0) {
+        if (direction.equals("left")) {
+            x -= speed;
+        } else if (direction.equals("right")) {
+            x += speed;
+        } else if (direction.equals("up")) {
+            y -= speed;
+        } else if (direction.equals("down")) {
+            y += speed;
+        }
 
+        // Check if player has completed 1 tile
+        if (x % gp.tileSize == 0 && y % gp.tileSize == 0) {
+            stepsTaken++;
+            diceStepsLeft--;
+
+            if (stepsTaken >= stepsPerDir[pathIndex]) {
+                // Change direction
+                pathIndex = (pathIndex + 1) % path.length;
+                direction = path[pathIndex];
+                stepsTaken = 0;
+            }
+        }
+    }
+}
     public void draw(Graphics2D g2) {
 
         BufferedImage image = null;
@@ -138,78 +154,4 @@ public class Player extends Entity {
 //        g2.setColor(Color.RED);
 //        g2.drawRect(screenX + solidarea.x ,screenY + solidarea.y , solidarea.width,solidarea.height );
 //        }
-//    }
-//
-//        BufferedImage image = null;
-//        int tempScreenX = screenX;
-//        int tempScreenY = screenY;
-//
-//        switch(direction){
-//            case "up":
-//                if(attacking == false){
-//                    if(spriteNum == 1){image =up1;}
-//                    if(spriteNum == 2) {image = up2;}
-//                }
-//                if(attacking == true)
-//                {
-//                    tempScreenY = screenY - gp.tileSize;
-//                    if(spriteNum == 1){image =atkup1;}
-//                    if(spriteNum == 2) {image = atkup2;}
-//                }
-//                break;
-//            case "down":
-//                if(attacking == false) {
-//                    if (spriteNum == 1) {image = down1;}
-//                    if (spriteNum == 2) {image = down2;}
-//                }
-//                if(attacking == true)
-//                {
-//                    if(spriteNum == 1){image =atkdown1;}
-//                    if(spriteNum == 2) {image = atkdown2;}
-//                }
-//                break;
-//            case "left":
-//                if(attacking == false) {
-//                    if (spriteNum == 1) {image = left1;}
-//                    if (spriteNum == 2) {image = left2;}
-//                }
-//                if(attacking == true)
-//                {
-//                    tempScreenX = screenX - gp.tileSize;
-//                    if(spriteNum == 1){image =atkL1;}
-//                    if(spriteNum == 2) {image = atkL2;}
-//                }
-//                break;
-//            case "right":
-//                if(attacking == false) {
-//                    if (spriteNum == 1) {image = right1;}
-//                    if (spriteNum == 2) {image = right2;}
-//                }
-//                if(attacking == true)
-//                {
-//                    if(spriteNum == 1){image =atkR1;}
-//                    if(spriteNum == 2) {image = atkR2;}
-//                }
-//                break;
-//
-//        }
-//        if(iframe == true)
-//        {
-//            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
-//        }
-//
-//        g2.drawImage(image,tempScreenX,tempScreenY,null);
-//
-//        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
-//
-//
-//
-//
-//        //debug text
-////        g2.setFont(new Font("Arial",Font.PLAIN,26));
-////        g2.setColor(Color.WHITE);
-////        g2.drawString("iframe:" + iframecounter,10,400);
-////        player size debugg
-//        g2.setColor(Color.RED);
-//        g2.drawRect(screenX + solidarea.x ,screenY + solidarea.y , solidarea.width,solidarea.height );
 //    }

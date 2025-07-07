@@ -2,15 +2,17 @@ package main;
 
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
+import java.util.Random;
+import Player.Entity;
+import Player.Player;
 
 public class Keybinds implements KeyListener {
     GamePanel gp;
-    public boolean up, down, left, right,enter;
+    public boolean up, down, left, right, enter;
     boolean checkdrawTime = false;
 
-    public Keybinds(GamePanel gp)
-    {
-        this.gp =gp;
+    public Keybinds(GamePanel gp) {
+        this.gp = gp;
     }
 
     @Override
@@ -20,52 +22,33 @@ public class Keybinds implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        Random rand = new Random();
         int code = e.getKeyCode();
         //play state
-
-            if (code == KeyEvent.VK_W) {
-                up = true;
-            }
-            if (code == KeyEvent.VK_A) {
-                left = true;
-            }
-            if (code == KeyEvent.VK_S) {
-                down = true;
-            }
-            if (code == KeyEvent.VK_D) {
-                right = true;
-            }
-            if (code == KeyEvent.VK_ENTER) {
-                enter = true;
-            }
-
-            if (code == KeyEvent.VK_T) {
-                if (checkdrawTime == false) {
-                    checkdrawTime = true;
-                } else if (checkdrawTime == true) {
-                    checkdrawTime = false;
-                }
-            }
-
+        if (code == KeyEvent.VK_ENTER) {
+            int dice = rand.nextInt(6) + 1;
+            System.out.println(dice);
+            gp.player.startMove(dice);
         }
+    }
 
 
     @Override
     public void keyReleased(KeyEvent e) {
         int code = e.getKeyCode();
-        if(code == KeyEvent.VK_W)
+        if(code == KeyEvent.VK_ENTER)
         {
             up = false;
         }
-        if(code == KeyEvent.VK_A)
+        if(code == KeyEvent.VK_ENTER)
         {
             left = false;
         }
-        if(code == KeyEvent.VK_S)
+        if(code == KeyEvent.VK_ENTER)
         {
             down = false;
         }
-        if(code == KeyEvent.VK_D)
+        if(code == KeyEvent.VK_ENTER)
         {
             right = false;
         }
