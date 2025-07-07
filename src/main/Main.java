@@ -10,7 +10,8 @@ public class Main {
         window.setResizable(false);
 //declare logo from resource folder
         ImageIcon logo = new ImageIcon(".//res//logo.png");
-        window.setTitle("NetGrid");
+        //game title
+        window.setTitle("NETGRID");
 
         GamePanel gamePanel = new GamePanel();
         window.add(gamePanel);
