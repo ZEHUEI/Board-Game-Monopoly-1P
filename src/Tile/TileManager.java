@@ -31,7 +31,7 @@ public class TileManager {
         setup(1,"stone",false);
         //side bar for UI resources
         setup(2,"SWUI",false);
-        setup(3,"WHITE",false);
+        setup(3,"side",false);
         //other tiles
         setup(4,"stone",false);
         setup(5,"stone",false);

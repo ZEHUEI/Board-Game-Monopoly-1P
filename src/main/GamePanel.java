@@ -9,6 +9,7 @@ import java.awt.*;
 public class GamePanel extends JPanel implements Runnable{
 
     public int originalTileSize = 16;
+    // if cannot see the whole then change this
     public int scale =3;
 
     public int FPS = 120;
