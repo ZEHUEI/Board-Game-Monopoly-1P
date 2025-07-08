@@ -12,7 +12,7 @@ public class Player extends Entity {
     Keybinds keyH;
 
     String[] path = {"left", "up", "right", "down"};
-    int[] stepsPerDir = {21, 17, 22, 17};
+    int[] stepsPerDir = {22, 17, 22, 17};
 
     int pathIndex = 0;
     int stepsTaken = 0;
@@ -41,7 +41,7 @@ public class Player extends Entity {
 
     public void setDefaultValues() {
 
-        x = gp.tileSize * 7 +  gp.screenWidth / 2;
+        x = gp.tileSize * 8 +  gp.screenWidth / 2;
         y = (gp.tileSize * 8) + gp.screenHeight / 2;
         speed = 4;
         direction = "left";

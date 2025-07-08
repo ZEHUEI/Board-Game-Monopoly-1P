@@ -29,6 +29,16 @@ public class TileManager {
     public void getTileImage(){
         setup(0,"Floor",false);
         setup(1,"stone",false);
+        //side bar for UI resources
+        setup(2,"SWUI",false);
+        setup(3,"WHITE",false);
+        //other tiles
+        setup(4,"stone",false);
+        setup(5,"stone",false);
+        setup(6,"stone",false);
+        setup(7,"stone",false);
+        setup(8,"stone",false);
+        setup(9,"stone",false);
     }
     public void setup(int index, String imageName, boolean collision){
         UtilityTool uTool = new UtilityTool();
