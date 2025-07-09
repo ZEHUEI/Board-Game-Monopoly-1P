@@ -1,7 +1,9 @@
 package Player;
 
 import main.GamePanel;
+//i think this one dont need alr cause dice initiate then change this
 import main.Keybinds;
+import Player.Dice;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
