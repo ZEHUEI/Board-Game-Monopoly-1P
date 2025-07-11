@@ -1,6 +1,7 @@
 package main;
 
 import Player.Player;
+import Player.Dice;
 import Tile.TileManager;
 
 import javax.swing.JPanel;
@@ -27,6 +28,8 @@ public class GamePanel extends JPanel implements Runnable{
     Keybinds keyH = new Keybinds(this);
     Thread gameThread;
     public Player player = new Player(this,keyH);
+    public Dice dice = new Dice(this,keyH);
+    public UI ui = new UI(this);
     public TileManager tileM = new TileManager(this);
 
 
@@ -37,6 +40,7 @@ public class GamePanel extends JPanel implements Runnable{
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH);
         this.setFocusable(true);
+        //debug
         System.out.println("screen width is " + screenWidth + "height" + screenHeight);
     }
 
@@ -77,38 +81,19 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void update(){
         player.update();
-//        if(gameState == playState)
-//        {
-//            player.update();
-//            for(int i = 0; i< npc.length;i++){
-//                if(npc[i] != null){npc[i].update();}
-//            }
-//            for(int i = 0; i< monster.length;i++){
-//                if(monster[i] != null)
-//                {
-//                    if(monster[i].alive == true && monster[i].dying == false)
-//                    {
-//                        monster[i].update();
-//                    }
-//                    if(monster[i].alive == false)
-//                    {
-//                        monster[i] = null;
-//                    }
-//                }
-//            }
-//        }
-//        if(gameState==pauseState)
-//        {
-//            music.stop();
-//        }
+        dice.update();
+        keyH.update();
     }
+
     public void paintComponent(Graphics g){
         super.paintComponent(g);
 
         Graphics2D g2 = (Graphics2D)g;
 
         tileM.draw(g2);
+        dice.draw(g2);
         player.draw(g2);
+        ui.draw(g2);
 
         g2.dispose();
     }

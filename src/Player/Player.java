@@ -1,9 +1,7 @@
 package Player;
 
 import main.GamePanel;
-//i think this one dont need alr cause dice initiate then change this
 import main.Keybinds;
-import Player.Dice;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -14,7 +12,7 @@ public class Player extends Entity {
     Keybinds keyH;
 
     String[] path = {"left", "up", "right", "down"};
-    int[] stepsPerDir = {22, 17, 22, 17};
+    int[] stepsPerDir = {21, 17, 22, 17};
 
     int pathIndex = 0;
     int stepsTaken = 0;
@@ -25,18 +23,6 @@ public class Player extends Entity {
         this.gp = gp;
         this.keyH = keyH;
 
-//        solidarea = new Rectangle();
-//        solidarea.x =9;
-//        solidarea.y=21;
-//        solidAreaDefaultX = solidarea.x;
-//        solidAreaDefaultY = solidarea.y;
-//        solidarea.width =30;
-//        solidarea.height =27;
-//
-//        //atk area
-//        atkarea.width = 36;
-//        atkarea.height = 36;
-
         setDefaultValues();
         getPlayerImage();
     }
@@ -45,10 +31,8 @@ public class Player extends Entity {
 
         x = gp.tileSize * 8 +  gp.screenWidth / 2;
         y = (gp.tileSize * 8) + gp.screenHeight / 2;
-        speed = 4;
+        speed = 2;
         direction = "left";
-        worldX = gp.maxScreenCol / 2;
-        worldY = gp.maxScreenCol / 2;
     }
 
     public void getPlayerImage() {
@@ -142,8 +126,6 @@ public void update() {
         }
 
         g2.drawImage(image, x , y ,gp.tileSize,gp.tileSize, null);
-
-        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
     }
 }
 

@@ -3,13 +3,13 @@ package main;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 import java.util.Random;
-import Player.Entity;
-import Player.Player;
 
 public class Keybinds implements KeyListener {
     GamePanel gp;
     public boolean up, down, left, right, enter;
-    boolean checkdrawTime = false;
+    public int locked = 0;
+    public boolean enterLocked = false;
+    public int dice;
 
     public Keybinds(GamePanel gp) {
         this.gp = gp;
@@ -26,9 +26,12 @@ public class Keybinds implements KeyListener {
         int code = e.getKeyCode();
         //play state
         if (code == KeyEvent.VK_ENTER) {
-            int dice = rand.nextInt(6) + 1;
+            dice = rand.nextInt(6) + 1;
             System.out.println(dice);
-            gp.player.startMove(dice);
+            gp.dice.startSpin(dice);
+
+            enterLocked = true;
+            locked = 90;
         }
     }
 
@@ -54,4 +57,13 @@ public class Keybinds implements KeyListener {
         }
 
     }
+    public void update() {
+        if (enterLocked) {
+            locked--;
+            if (locked <= 0) {
+                enterLocked = false;
+            }
+        }
+    }
+
 }

@@ -1,41 +1,30 @@
-//i need to change all these to dice
-// 9/7/2025
 package Player;
 
 import main.GamePanel;
+//i think this one dont need alr cause dice initiate then change this
 import main.Keybinds;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.Random;
 
 public class Dice extends Entity {
 
     GamePanel gp;
     Keybinds keyH;
 
-    String[] path = {"left", "up", "right", "down"};
-    int[] stepsPerDir = {22, 17, 22, 17};
-
-    int pathIndex = 0;
-    int stepsTaken = 0;
+    boolean isSpinning = false;
+    int spinCounter =0;
+    int finalface =1;
     int diceStepsLeft = 0;
+
+    //delay
+    boolean delayMove = false;
+    int delay = 0;
 
 
     public Dice(GamePanel gp, Keybinds keyH) {
         this.gp = gp;
         this.keyH = keyH;
-
-//        solidarea = new Rectangle();
-//        solidarea.x =9;
-//        solidarea.y=21;
-//        solidAreaDefaultX = solidarea.x;
-//        solidAreaDefaultY = solidarea.y;
-//        solidarea.width =30;
-//        solidarea.height =27;
-//
-//        //atk area
-//        atkarea.width = 36;
-//        atkarea.height = 36;
 
         setDefaultValues();
         getDiceImage();
@@ -43,53 +32,49 @@ public class Dice extends Entity {
 
     public void setDefaultValues() {
 
-        x = gp.tileSize * 8 +  gp.screenWidth / 2;
-        y = (gp.tileSize * 8) + gp.screenHeight / 2;
-        speed = 4;
-        direction = "left";
-        worldX = gp.maxScreenCol / 2;
-        worldY = gp.maxScreenCol / 2;
+        x = gp.tileSize * 13+  gp.screenWidth / 2;
+        y = (gp.tileSize * 5) + gp.screenHeight / 2;
     }
 
     public void getDiceImage() {
 
-        GD1 = setup("/Player/GD1", gp.tileSize, gp.tileSize);
-        GD2 = setup("/Player/GD2", gp.tileSize, gp.tileSize);
-        GL1 = setup("/Player/GL1", gp.tileSize, gp.tileSize);
-        GL2 = setup("/Player/GL2", gp.tileSize, gp.tileSize);
-        GR1 = setup("/Player/GR1", gp.tileSize, gp.tileSize);
-        GR2 = setup("/Player/GR2", gp.tileSize, gp.tileSize);
-        GU1 = setup("/Player/GU1", gp.tileSize, gp.tileSize);
-        GU2 = setup("/Player/GU2", gp.tileSize, gp.tileSize);
+        one = setup("/Dice/1", gp.tileSize, gp.tileSize );
+        two = setup("/Dice/2", gp.tileSize, gp.tileSize );
+        three = setup("/Dice/3", gp.tileSize, gp.tileSize );
+        four = setup("/Dice/4", gp.tileSize, gp.tileSize );
+        five = setup("/Dice/5", gp.tileSize , gp.tileSize );
+        six = setup("/Dice/6", gp.tileSize, gp.tileSize );
 
     }
-    public void startMove(int steps) {
+    public void startSpin(int steps) {
         this.diceStepsLeft = steps;
+        isSpinning =true;
+        spinCounter =0;
+        finalface = new Random().nextInt(6)+1;
+        delay = steps;
     }
 
     public void update() {
-        if (diceStepsLeft > 0) {
-            if (direction.equals("left")) {
-                x -= speed;
-            } else if (direction.equals("right")) {
-                x += speed;
-            } else if (direction.equals("up")) {
-                y -= speed;
-            } else if (direction.equals("down")) {
-                y += speed;
+        if (isSpinning) {
+            spinCounter++;
+            if (spinCounter % 5 == 0) {
+                spriteNum = (spriteNum % 6) + 1;
             }
+            if (spinCounter >= 30) {
+                spriteNum = finalface;
+                isSpinning = false;
+                delayMove = true;
+                delay =0;
+            }
+        }
+        //so after it runs the dice and stops
+        //add delay finish dice -> move player
+        else if(delayMove){
+            delay++;
+            if(delay >= 100){
+                gp.player.startMove(diceStepsLeft);
+                delayMove = false;
 
-            // Check if player has completed 1 tile
-            if (x % gp.tileSize == 0 && y % gp.tileSize == 0) {
-                stepsTaken++;
-                diceStepsLeft--;
-
-                if (stepsTaken >= stepsPerDir[pathIndex]) {
-                    // Change direction
-                    pathIndex = (pathIndex + 1) % path.length;
-                    direction = path[pathIndex];
-                    stepsTaken = 0;
-                }
             }
         }
     }
@@ -97,53 +82,30 @@ public class Dice extends Entity {
 
         BufferedImage image = null;
 
-        switch (direction) {
-            case "up":
-                if (spriteNum == 1) {
-                    image = GU1;
-                }
-                if (spriteNum == 2) {
-                    image = GU2;
-                }
-                break;
-            case "down":
-                if (spriteNum == 1) {
-                    image = GD1;
-                }
-                if (spriteNum == 2) {
-                    image = GD2;
-                }
-                break;
-            case "left":
-                if (spriteNum == 1) {
-                    image = GL1;
-                }
-                if (spriteNum == 2) {
-                    image = GL2;
-                }
-                break;
-            case "right":
-                if (spriteNum == 1) {
-                    image = GR1;
-                }
-                if (spriteNum == 2) {
-                    image = GR2;
-                }
-                break;
-        }
+                if (spriteNum == 1) {image = one;}
+                else if (spriteNum == 2) {image = two;}
+                else if (spriteNum == 3) {image = three;}
+                else if (spriteNum == 4) {image = four;}
+                else if (spriteNum == 5) {image = five;}
+                else if (spriteNum == 6) {image = six;}
+
         spriteCounter++;
         if (spriteCounter > 10) {
             if (spriteNum == 1) {
                 spriteNum = 2;
             } else if (spriteNum == 2) {
-                spriteNum = 1;
+                spriteNum = 3;
+            }else if (spriteNum == 3) {
+                spriteNum = 4;
+            }else if (spriteNum == 4) {
+                spriteNum = 5;
+            }else if (spriteNum == 5) {
+                spriteNum = 6;
             }
             spriteCounter = 0;
         }
 
         g2.drawImage(image, x , y ,gp.tileSize,gp.tileSize, null);
-
-        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
     }
 }
 
