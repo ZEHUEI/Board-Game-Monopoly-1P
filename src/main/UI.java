@@ -13,7 +13,8 @@ public class UI {
         this.gp = gp;
         try {
             InputStream is = getClass().getResourceAsStream("/fonts/pixelplay.ttf");
-            System.out.println("Font stream = " + is);
+            //debug
+            // System.out.println("Font stream = " + is);
             pixelplay_40 = Font.createFont(Font.TRUETYPE_FONT, is);
         } catch (
                 IOException e) {
@@ -30,7 +31,7 @@ public class UI {
         g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         g2.setColor(Color.WHITE);
 
-        String text ="COINS x" + gp.player.x;
+        String text ="COINS x" + gp.eHandler.coin;
         int x=gp.tileSize*27;
         int y=gp.tileSize*7;
         g2.setColor(Color.gray);
@@ -38,14 +39,14 @@ public class UI {
         g2.setColor(Color.white);
         g2.drawString(text,x,y);
 
-        text ="GEMS x" + gp.player.x;
+        text ="GEMS x" + gp.eHandler.gems;
         y=gp.tileSize*9;
         g2.setColor(Color.gray);
         g2.drawString(text,x+2,y+2);
         g2.setColor(Color.white);
         g2.drawString(text,x,y);
 
-        text ="TOKEN x" + gp.player.x;
+        text ="TOKEN x" + gp.eHandler.token;
         y=gp.tileSize*11;
         g2.setColor(Color.gray);
         g2.drawString(text,x+2,y+2);

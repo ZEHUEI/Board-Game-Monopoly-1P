@@ -30,6 +30,7 @@ public class GamePanel extends JPanel implements Runnable{
     public Player player = new Player(this,keyH);
     public Dice dice = new Dice(this,keyH);
     public UI ui = new UI(this);
+    public EventHandler eHandler = new EventHandler(this);
     public TileManager tileM = new TileManager(this);
 
 

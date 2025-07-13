@@ -5,22 +5,18 @@ import java.awt.*;
 public class EventHandler {
     GamePanel gp;
     EventRect eventRect[][];
-
-    int prevEventX, prevEventY;
-    boolean canTouchEvent;
+    int col = 0;
+    int row = 0;
+    public int coin;
+    public int token;
+    public int gems;
 
     public EventHandler(GamePanel gp) {
         this.gp = gp;
         eventRect = new EventRect[gp.maxWorldCol][gp.maxWorldRow];
 
-        int col = 0;
-        int row = 0;
         while (col < gp.maxWorldCol && row < gp.maxWorldRow) {
             eventRect[col][row] = new EventRect();
-            eventRect[col][row].x = 23;
-            eventRect[col][row].y = 23;
-            eventRect[col][row].width = 2;
-            eventRect[col][row].height = 2;
             eventRect[col][row].eventRectX = eventRect[col][row].x;
             eventRect[col][row].eventRectY = eventRect[col][row].y;
             col++;
@@ -31,68 +27,64 @@ public class EventHandler {
 
         }
     }
+    public int getTileX() {
+        return gp.player.x / gp.tileSize;
+    }
+
+    public int getTileY() {
+        return gp.player.y / gp.tileSize;
+    }
 
 
     public void checkEvent() {
-        int xDistance = Math.abs(gp.player.worldX - prevEventX);
-        int yDistance = Math.abs(gp.player.worldY - prevEventY);
-        int Distance = Math.max(xDistance, yDistance);
-        if (Distance > gp.tileSize) {
-            canTouchEvent = true;
-        }
+        int tileX = getTileX();
+        int tileY = getTileY();
+        if(tileX >=0 && tileX < gp.maxWorldCol && tileY >=0 && tileY <gp.maxWorldRow){
+//            if (tileX == 5 && tileY == 8 && !eventRect[5][8].eventDone) {
+//                damagePit(5, 8);
+//            }
 
-        if (canTouchEvent == true) {
-//            if (hitbox(85, 12, "any") == true) {
-//                damagePit(85,12,gp.dialogueState);
-//            }
-//            if (hitbox(86, 12, "any") == true) {
-//                healingPit(86,12,gp.dialogueState);
-//            }
-//            if (hitbox(85, 10, "any") == true) {
-//                teleport(85,10,gp.dialogueState);
-//            }
+            if (tileX == 5 && tileY == 18 && !eventRect[5][18].eventDone) {
+                teleport(5, 18,3);
+                gp.player.x = gp.tileSize * 23;
+                gp.player.y = gp.tileSize * 18;
+            }
+            if (tileX == 6 && tileY == 18 && !eventRect[6][18].eventDone) {
+                gainCoin(6, 18);
+            }
         }
+        System.out.println("Player is at tile: " + tileX + ", " + tileY);
+
     }
 
-    //check hitbox like collision --- change this to  when player stops
-//    public boolean hitbox(int col, int row, String reqDirection) {
-//        boolean hitbox = false;
-//
-//        gp.player.solidarea.x = gp.player.worldX + gp.player.solidarea.x;
-//        gp.player.solidarea.y = gp.player.worldY + gp.player.solidarea.y;
-//        eventRect[col][row].x = col * gp.tileSize + eventRect[col][row].x;
-//        eventRect[col][row].y = row * gp.tileSize + eventRect[col][row].y;
-//
-//        if (gp.player.solidarea.intersects(eventRect[col][row])&& eventRect[col][row].eventDone == false) {
-//            if (gp.player.direction.contentEquals(reqDirection) || reqDirection.contentEquals("any")) {
-//                hitbox = true;
-//
-//                prevEventX = gp.player.worldX;
-//                prevEventY = gp.player.worldY;
-//            }
-//        }
-//        gp.player.solidarea.x = gp.player.solidAreaDefaultX;
-//        gp.player.solidarea.y = gp.player.solidAreaDefaultY;
-//     eventRect[col][row].x = eventRect[col][row].eventRectX;
-//      eventRect[col][row].y = eventRect[col][row].eventRectY;
-//
-//       return hitbox;
-//    }
-
-    //one time dmg unless i move away alot
-    public void damagePit(int col,int row,int gameState) {
-//        gp.gameState = gameState;
-//        gp.ui.currentDialogue = "DMG TAKEN";
-//        gp.player.life -= 1;
-//        //activate only one time event, put at teleport
-////        eventRect[col][row].eventDone = true;
-//        canTouchEvent = false;
+    public void damagePit(int col,int row) {
+        System.out.println("DMG DONE");
+        eventRect[col][row].eventDone = true;
     }
 
-    public void teleport(int col,int row,int gameState) {
-//        gp.gameState = gameState;
-//        gp.ui.currentDialogue = "teleport";
-//        gp.player.worldX = gp.tileSize * 85;
-//        gp.player.worldY = gp.tileSize * 7;
+    public void gainCoin(int col,int row) {
+        gp.player.diceStepsLeft = 0;
+        coin++;
+    }
+
+    public void teleport(int col,int row,int haha) {
+        gp.player.diceStepsLeft = 0;
+        switch(haha){
+            case 1:
+                gp.player.direction = "up";
+                break;
+            case 2:
+                gp.player.direction = "down";
+                break;
+            case 3:
+                gp.player.direction = "left";
+                break;
+            case 4:
+                gp.player.direction = "right";
+                break;
+        }
+        gp.player.stepsTaken = 0;
+
     }
 }
+

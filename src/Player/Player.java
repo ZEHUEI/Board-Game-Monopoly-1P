@@ -14,9 +14,9 @@ public class Player extends Entity {
     String[] path = {"left", "up", "right", "down"};
     int[] stepsPerDir = {21, 17, 22, 17};
 
-    int pathIndex = 0;
-    int stepsTaken = 0;
-    int diceStepsLeft = 0;
+    public int pathIndex = 0;
+    public int stepsTaken = 0;
+    public int diceStepsLeft = 0;
 
 
     public Player(GamePanel gp, Keybinds keyH) {
@@ -31,7 +31,8 @@ public class Player extends Entity {
 
         x = gp.tileSize * 8 +  gp.screenWidth / 2;
         y = (gp.tileSize * 8) + gp.screenHeight / 2;
-        speed = 2;
+        speed = 2
+        ;
         direction = "left";
     }
 
@@ -73,6 +74,9 @@ public void update() {
                 pathIndex = (pathIndex + 1) % path.length;
                 direction = path[pathIndex];
                 stepsTaken = 0;
+            }
+            if(diceStepsLeft ==0){
+                gp.eHandler.checkEvent();
             }
         }
     }
