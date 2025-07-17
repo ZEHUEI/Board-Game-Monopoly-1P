@@ -26,12 +26,22 @@ public class Keybinds implements KeyListener {
         int code = e.getKeyCode();
         //play state
         if (code == KeyEvent.VK_ENTER) {
-            dice = rand.nextInt(6) + 1;
+//            dice = rand.nextInt(6) + 1;
+            dice = 10;
             System.out.println(dice);
             gp.dice.startSpin(dice);
 
             enterLocked = true;
             locked = 90;
+            if (gp.ui.showConditionWindow && enter) {
+                gp.ui.showConditionWindow = false;
+            }
+        }
+        if(code == KeyEvent.VK_A){
+            //accept make a sub screen for accpet as for decline
+        }
+        if(code == KeyEvent.VK_D){
+            //decline
         }
     }
 
@@ -42,18 +52,22 @@ public class Keybinds implements KeyListener {
         if(code == KeyEvent.VK_ENTER)
         {
             up = false;
+            enter = true;
         }
         if(code == KeyEvent.VK_ENTER)
         {
             left = false;
+            enter = true;
         }
         if(code == KeyEvent.VK_ENTER)
         {
             down = false;
+            enter = true;
         }
         if(code == KeyEvent.VK_ENTER)
         {
             right = false;
+            enter = true;
         }
 
     }
