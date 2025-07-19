@@ -9,7 +9,7 @@ public class UI {
     Font pixelplay_40;
     public Graphics2D g2;
     public String currentDialogue = "";
-    boolean showConditionWindow;
+    public boolean showConditionWindow;
 
 
     public UI(GamePanel gp) {
@@ -65,7 +65,8 @@ public class UI {
         g2.drawString(text,x,y);
 
         if(showConditionWindow){
-            drawWindow(g2,40,40,600,400);
+            drawWindow(g2,40,40,800,200);
+            drawDialogue(g2,40,40);
         }
 
     }
@@ -79,6 +80,18 @@ public class UI {
         g2.setColor(c);
         g2.setStroke(new BasicStroke(5));
         g2.drawRoundRect(x+5,y+5,width-10,height-10,25,25);
+
+    }
+    public void drawDialogue(Graphics2D g2,int x,int y){
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,32));
+        x+=gp.tileSize;
+        y+=gp.tileSize;
+
+        for(String line : currentDialogue.split("\n"))
+        {
+            g2.drawString(line,x,y);
+            y+=40;
+        }
     }
 }
 

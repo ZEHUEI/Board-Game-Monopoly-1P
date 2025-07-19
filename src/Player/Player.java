@@ -15,7 +15,7 @@ public class Player extends Entity {
     public int gems=0;
 
     String[] path = {"left", "up", "right", "down"};
-    int[] stepsPerDir = {21, 17, 22, 17};
+    int[] stepsPerDir = {20, 17, 20, 17};
 
     public int pathIndex = 0;
     public int stepsTaken = 0;
@@ -32,7 +32,7 @@ public class Player extends Entity {
 
     public void setDefaultValues() {
 
-        x = gp.tileSize * 8 +  gp.screenWidth / 2;
+        x = gp.tileSize * 7 +  gp.screenWidth / 2;
         y = (gp.tileSize * 8) + gp.screenHeight / 2;
         speed = 2
         ;

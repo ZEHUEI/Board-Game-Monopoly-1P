@@ -26,8 +26,8 @@ public class Keybinds implements KeyListener {
         int code = e.getKeyCode();
         //play state
         if (code == KeyEvent.VK_ENTER) {
-//            dice = rand.nextInt(6) + 1;
-            dice = 10;
+            dice = rand.nextInt(6) + 1;
+//            dice = 39;
             System.out.println(dice);
             gp.dice.startSpin(dice);
 
@@ -36,12 +36,6 @@ public class Keybinds implements KeyListener {
             if (gp.ui.showConditionWindow && enter) {
                 gp.ui.showConditionWindow = false;
             }
-        }
-        if(code == KeyEvent.VK_A){
-            //accept make a sub screen for accpet as for decline
-        }
-        if(code == KeyEvent.VK_D){
-            //decline
         }
     }
 
