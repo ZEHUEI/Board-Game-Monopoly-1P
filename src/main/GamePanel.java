@@ -3,7 +3,7 @@ package main;
 import Player.Player;
 import Player.Dice;
 import Tile.TileManager;
-
+import Player.Entity;
 import javax.swing.JPanel;
 import java.awt.*;
 
@@ -30,6 +30,10 @@ public class GamePanel extends JPanel implements Runnable{
     public Player player = new Player(this,keyH);
     public Dice dice = new Dice(this,keyH);
     public UI ui = new UI(this);
+    public Entity obj[] = new Entity[10];
+    public AssetSetter asset = new AssetSetter(this);
+    Sound music = new Sound();
+    Sound se = new Sound();
     public EventHandler eHandler = new EventHandler(this);
     public TileManager tileM = new TileManager(this);
 
@@ -46,6 +50,7 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void setupGame() {
+        asset.setObject();
     }
 
     public void startGameThread() {
@@ -98,5 +103,19 @@ public class GamePanel extends JPanel implements Runnable{
 
 
         g2.dispose();
+    }
+    public void playMusic(int i){
+        music.setFile(i);
+        music.play();
+        music.loop();
+    }
+
+    public void stopMusic(){
+        music.stop();
+    }
+
+    public void playSE(int i){
+        se.setFile(i);
+        se.play();
     }
 }

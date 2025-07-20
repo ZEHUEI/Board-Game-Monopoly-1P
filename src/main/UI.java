@@ -1,5 +1,8 @@
 package main;
 
+import Objects.Strikes;
+import Player.Entity;
+
 import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,6 +29,11 @@ public class UI {
                 FontFormatException e) {
             e.printStackTrace();
         }
+
+//        Entity Health = new Strikes(gp);
+//        fullheart = Health.image;
+//        halfheart= Health.image2;
+//        noheart= Health.image3;
     }
 
     public void draw(Graphics2D g2) {
@@ -35,9 +43,17 @@ public class UI {
         g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         g2.setColor(Color.WHITE);
 
-        String text ="COINS x" + gp.player.coin;
+        String text ="STRIKES";
         int x=gp.tileSize*27;
-        int y=gp.tileSize*7;
+        int y=gp.tileSize*2;
+        g2.setColor(Color.gray);
+        g2.drawString(text,x+2,y+2);
+        g2.setColor(Color.white);
+        g2.drawString(text,x,y);
+
+        text ="COINS x" + gp.player.coin;
+        x=gp.tileSize*27;
+        y=gp.tileSize*7;
         g2.setColor(Color.gray);
         g2.drawString(text,x+2,y+2);
         g2.setColor(Color.white);
@@ -92,6 +108,10 @@ public class UI {
             g2.drawString(line,x,y);
             y+=40;
         }
+    }
+
+    public void drawStrikes(){
+
     }
 }
 

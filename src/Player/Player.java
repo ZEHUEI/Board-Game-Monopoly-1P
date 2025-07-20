@@ -23,6 +23,7 @@ public class Player extends Entity {
 
 
     public Player(GamePanel gp, Keybinds keyH) {
+        super(gp);
         this.gp = gp;
         this.keyH = keyH;
 
@@ -34,9 +35,11 @@ public class Player extends Entity {
 
         x = gp.tileSize * 7 +  gp.screenWidth / 2;
         y = (gp.tileSize * 8) + gp.screenHeight / 2;
-        speed = 2
-        ;
+        speed = 2;
+
         direction = "left";
+        maxlife = 3;
+        life = maxlife;
     }
 
     public void getPlayerImage() {

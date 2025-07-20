@@ -23,6 +23,7 @@ public class Dice extends Entity {
 
 
     public Dice(GamePanel gp, Keybinds keyH) {
+        super(gp);
         this.gp = gp;
         this.keyH = keyH;
 
