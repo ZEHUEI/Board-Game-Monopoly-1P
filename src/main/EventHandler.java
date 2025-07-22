@@ -1,5 +1,7 @@
 package main;
 
+import Objects.Network;
+
 import java.awt.*;
 
 public class EventHandler {
@@ -7,6 +9,7 @@ public class EventHandler {
     EventRect eventRect[][];
     int col = 0;
     int row = 0;
+    public int tileX,tileY;
 
     public EventHandler(GamePanel gp) {
         this.gp = gp;
@@ -34,8 +37,8 @@ public class EventHandler {
 
 
     public void checkEvent() {
-        int tileX = getTileX();
-        int tileY = getTileY();
+        tileX = getTileX();
+        tileY = getTileY();
         if(tileX >=0 && tileX < gp.maxWorldCol && tileY >=0 && tileY <gp.maxWorldRow){
 
 //            if (tileX == 5 && tileY == 18 && !eventRect[5][18].eventDone) {
@@ -62,6 +65,7 @@ public class EventHandler {
             if (tileX == 22 && tileY == 18 && !eventRect[22][18].eventDone) {
                 gainCoin(22, 18);
             }
+            //1
             if (tileX == 21 && tileY == 18 && !eventRect[21][18].eventDone) {
                 //gems
                 damagePit(21, 18);
@@ -76,8 +80,7 @@ public class EventHandler {
                 gainGems(18, 18);
             }
             if (tileX == 17 && tileY == 18 && !eventRect[17][18].eventDone) {
-                //getdmg
-                gainToken(17, 18);
+                damagePit(17, 18);
             }
             if (tileX == 16 && tileY == 18 && !eventRect[16][18].eventDone) {
                 gainCoin(16, 18);
@@ -93,7 +96,7 @@ public class EventHandler {
             }
             if (tileX == 12 && tileY == 18 && !eventRect[12][18].eventDone) {
                 //10
-                teleport(12, 18,3);
+//                teleport(12, 18,3);
             }
             if (tileX == 11 && tileY == 18 && !eventRect[11][18].eventDone) {
                 gainToken(11, 18);
@@ -137,8 +140,7 @@ public class EventHandler {
                 gainToken(2, 15);
             }
             if (tileX == 2 && tileY == 14 && !eventRect[2][14].eventDone) {
-                //chnage to getdmg
-                gainCoin(2, 14);
+                damagePit(2, 14);
             }
             if (tileX == 2 && tileY == 13 && !eventRect[2][13].eventDone) {
                 gainGems(2, 13);
@@ -171,8 +173,7 @@ public class EventHandler {
                 gainGems(2, 4);
             }
             if (tileX == 2 && tileY == 3 && !eventRect[2][3].eventDone) {
-                //chenge to getdmg
-                gainToken(2, 3);
+                damagePit(2, 3);
             }
             if (tileX == 2 && tileY == 2 && !eventRect[2][2].eventDone) {
                 gainCoin(2, 2);
@@ -187,7 +188,6 @@ public class EventHandler {
             }
             if (tileX == 4 && tileY == 1 && !eventRect[4][1].eventDone) {
                 //39
-                //the fk this only got problem up
                 teleport(4, 1,1);
             }
             if (tileX == 5 && tileY == 1 && !eventRect[5][1].eventDone) {
@@ -200,8 +200,7 @@ public class EventHandler {
                 gainCoin(7, 1);
             }
             if (tileX == 8 && tileY == 1 && !eventRect[8][1].eventDone) {
-                //changhe to getdmg
-                gainGems(8, 1);
+                damagePit(8, 1);
             }
             if (tileX == 9 && tileY == 1 && !eventRect[9][1].eventDone) {
                 gainToken(9, 1);
@@ -223,7 +222,7 @@ public class EventHandler {
             }
             if (tileX == 15 && tileY == 1 && !eventRect[15][1].eventDone) {
                 //change to getdmg
-                gainToken(15, 1);
+                damagePit(15, 1);
             }
             if (tileX == 16 && tileY == 1 && !eventRect[16][1].eventDone) {
                 gainCoin(16, 1);
@@ -258,7 +257,7 @@ public class EventHandler {
             }
             if (tileX == 22 && tileY == 5 && !eventRect[22][5].eventDone) {
                 //dmg tile
-                gainGems(22, 5);
+                damagePit(22, 5);
             }
             if (tileX == 22 && tileY == 6 && !eventRect[22][6].eventDone) {
                 gainToken(22, 6);
@@ -328,37 +327,37 @@ public class EventHandler {
     }
 
     public void teleport(int col,int row,int haha) {
-        gp.player.diceStepsLeft = 0;
-        gp.ui.currentDialogue="TELEPORTED";
-        gp.ui.showConditionWindow = true;
-        switch(haha){
-            case 1:
-                gp.player.direction = "up";
-                gp.player.x = gp.tileSize * 2;
-                gp.player.y = gp.tileSize * 18;
-                gp.player.pathIndex=1;
-                break;
-            case 2:
-                gp.player.direction = "down";
-                gp.player.x = gp.tileSize * 22;
-                gp.player.y = gp.tileSize;
-                gp.player.pathIndex=3;
-                break;
-            case 3:
-                gp.player.direction = "left";
-                gp.player.x = gp.tileSize * 22;
-                gp.player.y = gp.tileSize * 18;
-                gp.player.pathIndex =0;
-                break;
-            case 4:
-                gp.player.direction = "right";
-                gp.player.x = gp.tileSize * 2;
-                gp.player.y = gp.tileSize;
-                gp.player.pathIndex=2;
-                break;
-        }
-        gp.player.stepsTaken = 0;
-        gp.playSE(5);
+//        gp.player.diceStepsLeft = 0;
+//        gp.ui.currentDialogue="TELEPORTED";
+//        gp.ui.showConditionWindow = true;
+//        switch(haha){
+//            case 1:
+//                gp.player.direction = "up";
+//                gp.player.x = gp.tileSize * 2;
+//                gp.player.y = gp.tileSize * 18;
+//                gp.player.pathIndex=1;
+//                break;
+//            case 2:
+//                gp.player.direction = "down";
+//                gp.player.x = gp.tileSize * 22;
+//                gp.player.y = gp.tileSize;
+//                gp.player.pathIndex=3;
+//                break;
+//            case 3:
+//                gp.player.direction = "left";
+//                gp.player.x = gp.tileSize * 22;
+//                gp.player.y = gp.tileSize * 18;
+//                gp.player.pathIndex =0;
+//                break;
+//            case 4:
+//                gp.player.direction = "right";
+//                gp.player.x = gp.tileSize * 2;
+//                gp.player.y = gp.tileSize;
+//                gp.player.pathIndex=2;
+//                break;
+//        }
+//        gp.player.stepsTaken = 0;
+//        gp.playSE(5);
 
     }
 
@@ -371,11 +370,28 @@ public class EventHandler {
             gp.player.gems -=5;
             gp.player.coin-=5;
             gp.player.token-=5;
+            if(tileX==19){
+                gp.ui.one = true;
+            }
+            if(tileX==5){
+                gp.ui.two = true;
+            }
+            if(tileX==2){
+                gp.ui.three = true;
+            }
+            if(tileX==12){
+                gp.ui.four = true;
+            }
+            if(tileX==22){
+                gp.ui.five = true;
+            }
+            gp.playSE(6);
         }
         else{
             //jz say not met need more this
             gp.ui.currentDialogue="YOU NEED 5 COINS,5 GEMS AND 5 TOKEN";
             gp.ui.showConditionWindow = true;
+            gp.playSE(7);
         }
     }
 }

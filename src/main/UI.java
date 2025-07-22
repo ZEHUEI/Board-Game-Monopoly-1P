@@ -1,5 +1,6 @@
 package main;
 
+import Objects.Network;
 import Objects.Strikes;
 import Player.Entity;
 
@@ -14,7 +15,12 @@ public class UI {
     public Graphics2D g2;
     public String currentDialogue = "";
     public boolean showConditionWindow;
-    BufferedImage Striked, noStrike;
+    BufferedImage Striked, noStrike,Havenet,nonet;
+    public boolean one = false;
+    public boolean two = false;
+    public boolean three = false;
+    public boolean four = false;
+    public boolean five = false;
 
 
     public UI(GamePanel gp) {
@@ -38,6 +44,9 @@ public class UI {
         noStrike = strikes.image2;
 
         //nets
+        Entity net = new Network(gp);
+        nonet = net.image;
+        Havenet = net.image2;
 
     }
 
@@ -49,6 +58,7 @@ public class UI {
         g2.setColor(Color.WHITE);
 
         drawStrikes();
+        drawnNet();
         String text ="STRIKES";
         int x=gp.tileSize*27;
         int y=gp.tileSize*2;
@@ -86,12 +96,28 @@ public class UI {
         g2.setColor(Color.white);
         g2.drawString(text,x,y);
 
+        if(one){
+            g2.drawImage(Havenet,gp.tileSize * 19,gp.tileSize * 17,null);
+        }
+        if(two){
+            g2.drawImage(Havenet,gp.tileSize * 5,gp.tileSize * 17,null);
+        }
+        if(three){
+            g2.drawImage(Havenet,gp.tileSize * 3,gp.tileSize * 9,null);
+        }
+        if(four){
+            g2.drawImage(Havenet,gp.tileSize * 12,gp.tileSize * 2,null);
+        }
+        if(five){
+            g2.drawImage(Havenet,gp.tileSize * 21,gp.tileSize * 9,null);
+        }
+
         if(showConditionWindow){
             drawWindow(g2,40,40,800,200);
             drawDialogue(g2,40,40);
         }
-
     }
+
     public void drawWindow(Graphics2D g2,int x,int y, int width, int height){
 
         Color c =new Color(0,0,0,200);
@@ -135,24 +161,26 @@ public class UI {
         }
     }
 
-    public void net(){
+    public void drawnNet(){
+        int x = gp.tileSize * 19;
+        int y=gp.tileSize * 17;
+        g2.drawImage(nonet,x,y,null);
 
-        int x= 22 + gp.tileSize*26;
-        int y=gp.tileSize*3;
-        int i = 0;
+        x = gp.tileSize * 5;
+        y=gp.tileSize * 17;
+        g2.drawImage(nonet,x,y,null);
 
-        while(i < gp.player.maxlife)
-        {
-            if (i < (gp.player.maxlife - gp.player.life)) {
-                g2.drawImage(Striked, x, y, null);
-            }
-            else {
-                g2.drawImage(noStrike, x, y, null);
-            }
-            i++;
-            x += 50;
-        }
+        x = gp.tileSize * 3;
+        y=gp.tileSize * 9;
+        g2.drawImage(nonet,x,y,null);
+
+        x = gp.tileSize * 12;
+        y=gp.tileSize * 2;
+        g2.drawImage(nonet,x,y,null);
+
+        x = gp.tileSize * 21;
+        y=gp.tileSize * 9;
+        g2.drawImage(nonet,x,y,null);
     }
 }
-
 

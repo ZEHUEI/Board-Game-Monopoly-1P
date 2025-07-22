@@ -10,9 +10,9 @@ public class Player extends Entity {
 
     GamePanel gp;
     Keybinds keyH;
-    public int coin=0;
-    public int token=0;
-    public int gems=0;
+    public int coin=100;
+    public int token=100;
+    public int gems=100;
 
     String[] path = {"left", "up", "right", "down"};
     int[] stepsPerDir = {20, 17, 20, 17};
