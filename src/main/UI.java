@@ -4,6 +4,7 @@ import Objects.Strikes;
 import Player.Entity;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -13,6 +14,7 @@ public class UI {
     public Graphics2D g2;
     public String currentDialogue = "";
     public boolean showConditionWindow;
+    BufferedImage Striked, noStrike;
 
 
     public UI(GamePanel gp) {
@@ -30,10 +32,13 @@ public class UI {
             e.printStackTrace();
         }
 
-//        Entity Health = new Strikes(gp);
-//        fullheart = Health.image;
-//        halfheart= Health.image2;
-//        noheart= Health.image3;
+        //strikes
+        Entity strikes = new Strikes(gp);
+        Striked = strikes.image;
+        noStrike = strikes.image2;
+
+        //nets
+
     }
 
     public void draw(Graphics2D g2) {
@@ -43,6 +48,7 @@ public class UI {
         g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         g2.setColor(Color.WHITE);
 
+        drawStrikes();
         String text ="STRIKES";
         int x=gp.tileSize*27;
         int y=gp.tileSize*2;
@@ -112,6 +118,40 @@ public class UI {
 
     public void drawStrikes(){
 
+        int x= 22 + gp.tileSize*26;
+        int y=gp.tileSize*3;
+        int i = 0;
+
+        while(i < gp.player.maxlife)
+        {
+            if (i < (gp.player.maxlife - gp.player.life)) {
+                g2.drawImage(Striked, x, y, null);
+            }
+            else {
+                g2.drawImage(noStrike, x, y, null);
+            }
+            i++;
+            x += 50;
+        }
+    }
+
+    public void net(){
+
+        int x= 22 + gp.tileSize*26;
+        int y=gp.tileSize*3;
+        int i = 0;
+
+        while(i < gp.player.maxlife)
+        {
+            if (i < (gp.player.maxlife - gp.player.life)) {
+                g2.drawImage(Striked, x, y, null);
+            }
+            else {
+                g2.drawImage(noStrike, x, y, null);
+            }
+            i++;
+            x += 50;
+        }
     }
 }
 

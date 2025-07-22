@@ -63,7 +63,8 @@ public class EventHandler {
                 gainCoin(22, 18);
             }
             if (tileX == 21 && tileY == 18 && !eventRect[21][18].eventDone) {
-                gainGems(21, 18);
+                //gems
+                damagePit(21, 18);
             }
             if (tileX == 20 && tileY == 18 && !eventRect[20][18].eventDone) {
                 gainToken(20, 18);
@@ -306,19 +307,24 @@ public class EventHandler {
         gp.ui.currentDialogue="GOT DAMAGED !!!";
         gp.ui.showConditionWindow = true;
         gp.player.diceStepsLeft = 0;
+        gp.player.life -=1;
+        gp.playSE(4);
     }
 
     public void gainCoin(int col,int row) {
         gp.player.diceStepsLeft = 0;
         gp.player.coin++;
+        gp.playSE(1);
     }
     public void gainGems(int col,int row) {
         gp.player.diceStepsLeft = 0;
         gp.player.gems++;
+        gp.playSE(2);
     }
     public void gainToken(int col,int row) {
         gp.player.diceStepsLeft = 0;
         gp.player.token++;
+        gp.playSE(3);
     }
 
     public void teleport(int col,int row,int haha) {
@@ -352,6 +358,7 @@ public class EventHandler {
                 break;
         }
         gp.player.stepsTaken = 0;
+        gp.playSE(5);
 
     }
 

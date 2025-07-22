@@ -4,6 +4,7 @@ import main.GamePanel;
 import main.UtilityTool;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -17,7 +18,10 @@ public class Entity {
     public BufferedImage one, two, three, four, five,six;
     public int spriteCounter = 0;
     public int spriteNum = 1;
-    public BufferedImage image,image2, net,nonet;
+    public static BufferedImage image;
+    public static BufferedImage image2;
+    public BufferedImage net;
+    public BufferedImage nonet;
 
     public Entity(GamePanel gp) {
         this.gp = gp;
@@ -36,4 +40,9 @@ public class Entity {
         }
         return image;
     }
+
+    public void draw(Graphics2D g2) {
+        g2.drawImage(image,x, y, null);
+    }
+
 }

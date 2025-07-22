@@ -33,7 +33,7 @@ public class Dice extends Entity {
 
     public void setDefaultValues() {
 
-        x = gp.tileSize * 13+  gp.screenWidth / 2;
+        x = -22 + gp.tileSize * 13+  gp.screenWidth / 2;
         y = (gp.tileSize * 5) + gp.screenHeight / 2;
     }
 
