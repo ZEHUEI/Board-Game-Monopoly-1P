@@ -59,6 +59,7 @@ public class UI {
 
         drawStrikes();
         drawnNet();
+
         String text ="STRIKES";
         int x=gp.tileSize*27;
         int y=gp.tileSize*2;
@@ -115,6 +116,14 @@ public class UI {
         if(showConditionWindow){
             drawWindow(g2,40,40,800,200);
             drawDialogue(g2,40,40);
+        }
+
+        if(gp.player.life == 0)
+        {
+            drawWinLoseScreen("LOST");
+        }
+        else if(one&&two&&three&four&&five){
+            drawWinLoseScreen("VICTORY");
         }
     }
 
@@ -181,6 +190,17 @@ public class UI {
         x = gp.tileSize * 21;
         y=gp.tileSize * 9;
         g2.drawImage(nonet,x,y,null);
+    }
+    public void drawWinLoseScreen(String text){
+
+        gp.gamestate = gp.winlosestate;
+
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN,80f));
+        int x = 500;
+        int y = gp.screenHeight/2;
+
+        gp.stopMusic();
+        g2.drawString(text,x,y);
     }
 }
 

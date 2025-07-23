@@ -10,9 +10,9 @@ public class Player extends Entity {
 
     GamePanel gp;
     Keybinds keyH;
-    public int coin=100;
-    public int token=100;
-    public int gems=100;
+    public int coin=0;
+    public int token=0;
+    public int gems=0;
 
     String[] path = {"left", "up", "right", "down"};
     int[] stepsPerDir = {20, 17, 20, 17};
@@ -138,14 +138,3 @@ public void update() {
         g2.drawImage(image, x , y ,gp.tileSize,gp.tileSize, null);
     }
 }
-
-
-            //debug text
-//        g2.setFont(new Font("Arial",Font.PLAIN,26));
-//        g2.setColor(Color.WHITE);
-//        g2.drawString("iframe:" + iframecounter,10,400);
-//        player size debugg
-//        g2.setColor(Color.RED);
-//        g2.drawRect(screenX + solidarea.x ,screenY + solidarea.y , solidarea.width,solidarea.height );
-//        }
-//    }

@@ -365,7 +365,7 @@ public class EventHandler {
         gp.player.diceStepsLeft =0;
         if(gp.keyH. gp.player.token >=5 && gp.player.coin >=5 && gp.player.gems >=5){
             //condition met
-            gp.ui.currentDialogue="METT";
+            gp.ui.currentDialogue="CONDITION MET NETWORK GAIN !!!";
             gp.ui.showConditionWindow = true;
             gp.player.gems -=5;
             gp.player.coin-=5;
@@ -389,9 +389,9 @@ public class EventHandler {
         }
         else{
             //jz say not met need more this
-            gp.ui.currentDialogue="YOU NEED 5 COINS,5 GEMS AND 5 TOKEN";
+            gp.ui.currentDialogue="YOU NEED 5 COINS , 5 GEMS AND 5 TOKEN";
             gp.ui.showConditionWindow = true;
-            gp.playSE(7);
+            gp.playSE(1);
         }
     }
 }

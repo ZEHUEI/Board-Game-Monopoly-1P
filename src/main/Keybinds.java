@@ -25,16 +25,18 @@ public class Keybinds implements KeyListener {
         Random rand = new Random();
         int code = e.getKeyCode();
         //play state
-        if (code == KeyEvent.VK_ENTER) {
+        if(gp.gamestate == gp.playstate){
+            if (code == KeyEvent.VK_ENTER) {
 //            dice = rand.nextInt(6) + 1;
-           dice = 1;
-            System.out.println(dice);
-            gp.dice.startSpin(dice);
+                dice = 3;
+                System.out.println(dice);
+                gp.dice.startSpin(dice);
 
-            enterLocked = true;
-            locked = 90;
-            if (gp.ui.showConditionWindow && enter) {
-                gp.ui.showConditionWindow = false;
+                enterLocked = true;
+                locked = 90;
+                if (gp.ui.showConditionWindow && enter) {
+                    gp.ui.showConditionWindow = false;
+                }
             }
         }
     }
