@@ -29,7 +29,7 @@ public class Keybinds implements KeyListener {
             if (code == KeyEvent.VK_ENTER) {
             dice = rand.nextInt(6) + 1;
                 //debug
-//                dice = 1;
+                //dice = 3;
                 System.out.println(dice);
                 gp.dice.startSpin(dice);
 

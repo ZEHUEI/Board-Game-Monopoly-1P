@@ -15,7 +15,7 @@ public class UI {
     public Graphics2D g2;
     public String currentDialogue = "";
     public boolean showConditionWindow;
-    BufferedImage Striked, noStrike, Havenet, nonet,blue,black;
+    BufferedImage Striked, noStrike, Havenet, nonet;
     public boolean one = false;
     public boolean two = false;
     public boolean three = false;
