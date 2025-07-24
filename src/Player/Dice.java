@@ -79,6 +79,7 @@ public class Dice extends Entity {
             }
         }
     }
+    @Override
     public void draw(Graphics2D g2) {
 
         BufferedImage image = null;
@@ -109,14 +110,3 @@ public class Dice extends Entity {
         g2.drawImage(image, x , y ,gp.tileSize,gp.tileSize, null);
     }
 }
-
-
-//debug text
-//        g2.setFont(new Font("Arial",Font.PLAIN,26));
-//        g2.setColor(Color.WHITE);
-//        g2.drawString("iframe:" + iframecounter,10,400);
-//        player size debugg
-//        g2.setColor(Color.RED);
-//        g2.drawRect(screenX + solidarea.x ,screenY + solidarea.y , solidarea.width,solidarea.height );
-//        }
-//    }

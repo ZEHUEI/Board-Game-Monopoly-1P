@@ -40,26 +40,6 @@ public class EventHandler {
         tileX = getTileX();
         tileY = getTileY();
         if(tileX >=0 && tileX < gp.maxWorldCol && tileY >=0 && tileY <gp.maxWorldRow){
-
-//            if (tileX == 5 && tileY == 18 && !eventRect[5][18].eventDone) {
-//                teleport(5, 18,3);
-//                gp.player.x = gp.tileSize * 23;
-//                gp.player.y = gp.tileSize * 18;
-//            }
-//            //debug window
-//            if (tileX == 3 && tileY == 18 && !eventRect[3][18].eventDone) {
-//                teleport(3, 18,3);
-//                gp.player.x = gp.tileSize * 8 +  gp.screenWidth / 2;
-//                gp.player.y = (gp.tileSize * 8) + gp.screenHeight / 2;
-//            }
-//            if (tileX == 6 && tileY == 18 && !eventRect[6][18].eventDone) {
-//                gainCoin(6, 18);
-//            }
-//            if (tileX == 5 && tileY == 18 && !eventRect[5][18].eventDone) {
-//                teleport(5, 18,3);
-//                gp.player.x = gp.tileSize * 23;
-//                gp.player.y = gp.tileSize * 18;
-//            }
             //all tiles
             //left
             if (tileX == 22 && tileY == 18 && !eventRect[22][18].eventDone) {
@@ -67,8 +47,7 @@ public class EventHandler {
             }
             //1
             if (tileX == 21 && tileY == 18 && !eventRect[21][18].eventDone) {
-                //gems
-                damagePit(21, 18);
+                gainGems(21, 18);
             }
             if (tileX == 20 && tileY == 18 && !eventRect[20][18].eventDone) {
                 gainToken(20, 18);
@@ -96,7 +75,7 @@ public class EventHandler {
             }
             if (tileX == 12 && tileY == 18 && !eventRect[12][18].eventDone) {
                 //10
-//                teleport(12, 18,3);
+               teleport(12, 18,3);
             }
             if (tileX == 11 && tileY == 18 && !eventRect[11][18].eventDone) {
                 gainToken(11, 18);
@@ -327,49 +306,49 @@ public class EventHandler {
     }
 
     public void teleport(int col,int row,int haha) {
-//        gp.player.diceStepsLeft = 0;
-//        gp.ui.currentDialogue="TELEPORTED";
-//        gp.ui.showConditionWindow = true;
-//        switch(haha){
-//            case 1:
-//                gp.player.direction = "up";
-//                gp.player.x = gp.tileSize * 2;
-//                gp.player.y = gp.tileSize * 18;
-//                gp.player.pathIndex=1;
-//                break;
-//            case 2:
-//                gp.player.direction = "down";
-//                gp.player.x = gp.tileSize * 22;
-//                gp.player.y = gp.tileSize;
-//                gp.player.pathIndex=3;
-//                break;
-//            case 3:
-//                gp.player.direction = "left";
-//                gp.player.x = gp.tileSize * 22;
-//                gp.player.y = gp.tileSize * 18;
-//                gp.player.pathIndex =0;
-//                break;
-//            case 4:
-//                gp.player.direction = "right";
-//                gp.player.x = gp.tileSize * 2;
-//                gp.player.y = gp.tileSize;
-//                gp.player.pathIndex=2;
-//                break;
-//        }
-//        gp.player.stepsTaken = 0;
-//        gp.playSE(5);
+        gp.player.diceStepsLeft = 0;
+        gp.ui.currentDialogue="TELEPORTED";
+        gp.ui.showConditionWindow = true;
+        switch(haha){
+            case 1:
+                gp.player.direction = "up";
+                gp.player.x = gp.tileSize * 2;
+                gp.player.y = gp.tileSize * 18;
+                gp.player.pathIndex=1;
+                break;
+            case 2:
+                gp.player.direction = "down";
+                gp.player.x = gp.tileSize * 22;
+                gp.player.y = gp.tileSize;
+                gp.player.pathIndex=3;
+                break;
+            case 3:
+                gp.player.direction = "left";
+                gp.player.x = gp.tileSize * 22;
+                gp.player.y = gp.tileSize * 18;
+                gp.player.pathIndex =0;
+                break;
+            case 4:
+                gp.player.direction = "right";
+                gp.player.x = gp.tileSize * 2;
+                gp.player.y = gp.tileSize;
+                gp.player.pathIndex=2;
+                break;
+        }
+        gp.player.stepsTaken = 0;
+        gp.playSE(5);
 
     }
 
     public void condition(int col, int row){
         gp.player.diceStepsLeft =0;
-        if(gp.keyH. gp.player.token >=5 && gp.player.coin >=5 && gp.player.gems >=5){
+        if(gp.keyH. gp.player.token >=3 && gp.player.coin >=3 && gp.player.gems >=3){
             //condition met
             gp.ui.currentDialogue="CONDITION MET NETWORK GAIN !!!";
             gp.ui.showConditionWindow = true;
-            gp.player.gems -=5;
-            gp.player.coin-=5;
-            gp.player.token-=5;
+            gp.player.gems -=3;
+            gp.player.coin-=3;
+            gp.player.token-=3;
             if(tileX==19){
                 gp.ui.one = true;
             }
@@ -389,9 +368,9 @@ public class EventHandler {
         }
         else{
             //jz say not met need more this
-            gp.ui.currentDialogue="YOU NEED 5 COINS , 5 GEMS AND 5 TOKEN";
+            gp.ui.currentDialogue="YOU NEED 3 COINS , 3 GEMS AND 3 TOKEN";
             gp.ui.showConditionWindow = true;
-            gp.playSE(1);
+            gp.playSE(7);
         }
     }
 }

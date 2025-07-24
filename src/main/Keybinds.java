@@ -27,8 +27,9 @@ public class Keybinds implements KeyListener {
         //play state
         if(gp.gamestate == gp.playstate){
             if (code == KeyEvent.VK_ENTER) {
-//            dice = rand.nextInt(6) + 1;
-                dice = 3;
+            dice = rand.nextInt(6) + 1;
+                //debug
+//                dice = 1;
                 System.out.println(dice);
                 gp.dice.startSpin(dice);
 

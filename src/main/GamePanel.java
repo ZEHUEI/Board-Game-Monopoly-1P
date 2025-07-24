@@ -2,10 +2,12 @@ package main;
 
 import Player.Player;
 import Player.Dice;
+import Player.Entity;
 import Tile.TileManager;
 
 import javax.swing.JPanel;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class GamePanel extends JPanel implements Runnable{
 
@@ -30,10 +32,13 @@ public class GamePanel extends JPanel implements Runnable{
     public Player player = new Player(this,keyH);
     public Dice dice = new Dice(this,keyH);
     public UI ui = new UI(this);
+    public AssetSetter asset = new AssetSetter(this);
     Sound music = new Sound();
     Sound se = new Sound();
+    public Entity obj[] = new Entity[50];
     public EventHandler eHandler = new EventHandler(this);
     public TileManager tileM = new TileManager(this);
+    ArrayList<Entity> entityList = new ArrayList<>();
 
     public int gamestate;
     public int playstate = 0;
@@ -52,8 +57,9 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void setupGame() {
+        asset.setObject();
+        playMusic(0);
         gamestate = playstate;
-//        playMusic(0);
     }
 
     public void startGameThread() {
@@ -92,6 +98,10 @@ public class GamePanel extends JPanel implements Runnable{
         player.update();
         dice.update();
         keyH.update();
+
+        if(gamestate == winlosestate){
+            stopMusic();
+        }
     }
 
     public void paintComponent(Graphics g){
@@ -100,6 +110,11 @@ public class GamePanel extends JPanel implements Runnable{
         Graphics2D g2 = (Graphics2D)g;
 
         tileM.draw(g2);
+        for (int i = 0; i < obj.length; i++) {
+            if (obj[i] != null) {
+                obj[i].draw(g2);
+            }
+        }
         dice.draw(g2);
         player.draw(g2);
         ui.draw(g2);

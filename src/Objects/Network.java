@@ -3,8 +3,6 @@ package Objects;
 import Player.Entity;
 import main.GamePanel;
 
-import java.awt.*;
-
 public class Network extends Entity {
 
     public Network(GamePanel gp){

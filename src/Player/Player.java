@@ -10,9 +10,9 @@ public class Player extends Entity {
 
     GamePanel gp;
     Keybinds keyH;
-    public int coin=0;
-    public int token=0;
-    public int gems=0;
+    public int coin;
+    public int token;
+    public int gems;
 
     String[] path = {"left", "up", "right", "down"};
     int[] stepsPerDir = {20, 17, 20, 17};
@@ -36,6 +36,10 @@ public class Player extends Entity {
         x = gp.tileSize * 7 +  gp.screenWidth / 2;
         y = (gp.tileSize * 8) + gp.screenHeight / 2;
         speed = 2;
+
+        coin=5;
+        token=5;
+        gems=5;
 
         direction = "left";
         maxlife = 3;

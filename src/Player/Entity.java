@@ -20,8 +20,9 @@ public class Entity {
     public int spriteNum = 1;
     public static BufferedImage image;
     public static BufferedImage image2;
-    public BufferedImage net;
-    public BufferedImage nonet;
+
+    //random plants
+    public BufferedImage P1, P2, P3, P4, P5,P6,P7,P8,P9,P10;
 
     public Entity(GamePanel gp) {
         this.gp = gp;

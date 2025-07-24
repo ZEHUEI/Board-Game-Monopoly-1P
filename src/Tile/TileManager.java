@@ -5,7 +5,6 @@ import main.UtilityTool;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,12 +32,8 @@ public class TileManager {
         setup(2,"SWUI",false);
         setup(3,"side",false);
         //other tiles
-        setup(4,"stone",false);
-        setup(5,"stone",false);
-        setup(6,"stone",false);
-        setup(7,"stone",false);
-        setup(8,"stone",false);
-        setup(9,"stone",false);
+        setup(4,"grass2",false);
+        setup(5,"tree",false);
     }
     public void setup(int index, String imageName, boolean collision){
         UtilityTool uTool = new UtilityTool();
@@ -104,32 +99,5 @@ public class TileManager {
                 y+= gp.tileSize;
             }
         }
-
-//        while (worldcol < gp.maxWorldCol && worldrow < gp.maxWorldRow) {
-//
-//            int tileNum = mapTileNum[worldcol][worldrow];
-//
-//            int worldX = worldcol * gp.tileSize;
-//            int worldY = worldrow * gp.tileSize;
-//            int screenX = worldX - gp.player.worldX + gp.player.screenX;
-//            int screenY = worldY - gp.player.worldY + gp.player.screenY;
-//
-//            if(worldX + gp.tileSize > gp.player.worldX - gp.player.screenX &&
-//                    worldX - gp.tileSize <gp.player.worldX + gp.player.screenX &&
-//                    worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
-//                    worldY - gp.tileSize <gp.player.worldY + gp.player.screenY)
-//            {
-//                g2.drawImage(tile[tileNum].image, screenX, screenY,null);
-//            }
-//            worldcol++;
-//
-//            if (worldcol == gp.maxWorldCol) {
-//                worldcol = 0;
-//                worldrow++;
-//            }
-//        }
     }
-
-
-
 }

@@ -8,7 +8,7 @@ import java.net.URL;
 public class Sound {
 
     Clip clip;
-    URL soundURL[] = new URL[20];
+    URL soundURL[] = new URL[10];
 
     public Sound(){
 
@@ -20,6 +20,8 @@ public class Sound {
         soundURL[5] = getClass().getResource("/Sound/Teleport.wav");
         soundURL[6] = getClass().getResource("/Sound/Con1.wav");
         soundURL[7] = getClass().getResource("/Sound/Con2.wav");
+        soundURL[8] = getClass().getResource("/Sound/VICTORY.wav");
+        soundURL[9] = getClass().getResource("/Sound/LOST.wav");
 
     }
 
@@ -35,12 +37,11 @@ public class Sound {
     }
     public void play(){
         clip.start();
-        //stop cause damn annoying
+        //stop cause annoying
     }
     public void loop(){
         clip.loop(Clip.LOOP_CONTINUOUSLY);
     }
-    public void stop(){
-        clip.stop();
+    public void stop(){clip.stop();
     }
 }
