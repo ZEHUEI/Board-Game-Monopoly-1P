@@ -1,9 +1,5 @@
 package main;
 
-import Objects.Network;
-
-import java.awt.*;
-
 public class EventHandler {
     GamePanel gp;
     EventRect eventRect[][];
